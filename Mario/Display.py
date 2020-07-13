@@ -2,8 +2,8 @@
 
 import pygame
 
-import Map
-import Player
+from Map import MapListener
+from Player import Player
 
 
 class Display:
@@ -11,7 +11,7 @@ class Display:
         self.screen = pygame.display.set_mode((1024, 960))
         pygame.display.set_caption("test")
 
-        self.map = Map.Map(self)
+        self.map = MapListener.Map(self)
 
         self.marioX = 160
         self.velocityX = 0
