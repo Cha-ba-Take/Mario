@@ -4,6 +4,7 @@ import csv
 import pygame
 
 import Image
+from Map import MapUpdate
 
 
 def loadMapData(mapName):
@@ -41,39 +42,14 @@ class Map:
         return surface
 
     def update(self):
-        self.previousWorldX = self.worldX
-        MapUpdate(self)
+        MapUpdate.update(self)
 
     def draw(self):
         # マップの描画
         self.display.screen.blit(self.map, (-(self.worldX % 64), 0))
 
-class MapUpdate():
-    def __init__(self, Map):
-        self.MapInstance = Map
 
-        self.scroll()
-        self.blit()
 
-    def scroll(self):
-        if self.checkScroll() is False:
-            return
-
-        self.MapInstance.map.scroll(-64, 0)
-
-    def checkScroll(self):
-        if self.MapInstance.display.marioX == 512:
-            self.MapInstance.worldX += self.MapInstance.display.velocityX
-
-        if self.MapInstance.previousWorldX % 64 <= self.MapInstance.worldX % 64: return False
-        return True
-
-    def blit(self):
-        mapX = int(self.MapInstance.worldX // 64) + 17
-        for y in range(15):
-            chip = self.MapInstance.chipList[int(self.MapInstance.mapData[y][mapX])]
-            position = (mapX * self.MapInstance.chipSize[0], y * self.MapInstance.chipSize[1])
-            self.MapInstance.map.blit(chip, position)
 
 
 

@@ -5,6 +5,12 @@ import pygame
 from pygame.locals import *
 
 
+def flip(chipList):
+    for i in range(len(chipList)):
+        chipList.append(pygame.transform.flip(chipList[i], True, False))
+    return chipList
+
+
 class Image:
     def __init__(self, fileName, transparency=False):
         self.filePath = os.path.join("data/images", fileName)
@@ -28,3 +34,6 @@ class Image:
                 chip.convert()
             chipList.append(chip)
         return chipList
+
+    def makePlayerImage(self, image, chipSize):
+        return flip(self.split(image, chipSize))

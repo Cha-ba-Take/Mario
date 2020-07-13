@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
 
         self.playerImage = Image.Image("mario.png", True)
         baseImage = self.playerImage.load()
-        self.images = self.playerImage.split(baseImage, (64, 64))
+        self.images = self.playerImage.makePlayerImage(baseImage, (64, 64))
         self.image = self.images[0]
 
         self.animator = Animator.Animator(self.images)
@@ -59,6 +59,8 @@ class Player(pygame.sprite.Sprite):
             self.display.velocityX = 0
         elif self.state == 1:
             self.display.velocityX = 4
+        elif self.state == 2:
+            self.display.velocityX = -4
 
     def getVelocityY(self):
         # Y軸方向の速度を取得
@@ -75,6 +77,8 @@ class Player(pygame.sprite.Sprite):
             self.animationData = [1, 0, None]
         elif self.state == 1:
             self.animationData = [3, 1, 4]
+        elif self.state == 2:
+            self.animationData = [3, 7, 4]
         return self.animationData
 
     def draw(self):
