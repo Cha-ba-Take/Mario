@@ -6,7 +6,7 @@ class Move(metaclass=ABCMeta):
     def __init__(self, player):
         """
 
-        :param PlayerClass:
+        :player PlayerClass:
         """
         pass
 
