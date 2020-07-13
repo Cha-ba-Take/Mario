@@ -28,3 +28,11 @@ class Image:
                 chip.convert()
             chipList.append(chip)
         return chipList
+
+    def flip(self, chipList):
+        for i in range(len(chipList)):
+            chipList.append(pygame.transform.flip(chipList[i], True, False))
+        return chipList
+
+    def makePlayerImage(self, image, chipSize):
+        return self.flip(self.split(image, chipSize))

@@ -31,5 +31,9 @@ class Event:
 
     def stateMachine(self):
         # ステートマシン
-        if self.keyEvent == 1:
+        if self.keyEvent == 0:
+            self.state = 0
+        elif self.keyEvent == 1:
             self.state = 1
+        elif self.keyEvent == 2:
+            self.state = 2

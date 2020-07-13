@@ -41,24 +41,40 @@ class Map:
         return surface
 
     def update(self):
-        # マップの更新
         self.previousWorldX = self.worldX
-
-        if self.display.velocityX > 0:
-            if self.display.marioX == 512:
-                self.worldX += self.display.velocityX
-
-        if self.previousWorldX % 64 <= self.worldX % 64:
-            return
-
-        self.map.scroll(-64, 0)
-
-        mapX = int(self.worldX // 64) + 17
-        for y in range(15):
-            chip = self.chipList[int(self.mapData[y][mapX])]
-            position = (mapX * self.chipSize[0], y * self.chipSize[1])
-            self.map.blit(chip, position)
+        MapUpdate(self)
 
     def draw(self):
         # マップの描画
         self.display.screen.blit(self.map, (-(self.worldX % 64), 0))
+
+class MapUpdate():
+    def __init__(self, Map):
+        self.MapInstance = Map
+
+        self.scroll()
+        self.blit()
+
+    def scroll(self):
+        if self.checkScroll() is False:
+            return
+
+        self.MapInstance.map.scroll(-64, 0)
+
+    def checkScroll(self):
+        if self.MapInstance.display.marioX == 512:
+            self.MapInstance.worldX += self.MapInstance.display.velocityX
+
+        if self.MapInstance.previousWorldX % 64 <= self.MapInstance.worldX % 64: return False
+        return True
+
+    def blit(self):
+        mapX = int(self.MapInstance.worldX // 64) + 17
+        for y in range(15):
+            chip = self.MapInstance.chipList[int(self.MapInstance.mapData[y][mapX])]
+            position = (mapX * self.MapInstance.chipSize[0], y * self.MapInstance.chipSize[1])
+            self.MapInstance.map.blit(chip, position)
+
+
+
+
