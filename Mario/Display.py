@@ -4,7 +4,6 @@ import pygame
 
 from Map import MapListener
 from Player import Player
-import Collide
 
 
 class Display:
@@ -12,7 +11,7 @@ class Display:
         self.screen = pygame.display.set_mode((1024, 960))
         pygame.display.set_caption("test")
 
-        self.collide = Collide.Collide(self)
+        self.blocks = pygame.sprite.LayeredUpdates()
 
         self.map = MapListener.Map(self)
 

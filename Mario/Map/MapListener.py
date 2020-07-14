@@ -43,8 +43,8 @@ class Map:
                 position = (x * self.chipSize[0], y * self.chipSize[1])
                 if index in self.structureList:
                     structure = Structure.Structure(self, chip, position)
-                    self.display.collide.blocks.add(structure)
-                    self.display.collide.blocks.draw(surface)
+                    self.display.blocks.add(structure)
+                    self.display.blocks.draw(surface)
                 else:
                     surface.blit(chip, position)
         return surface

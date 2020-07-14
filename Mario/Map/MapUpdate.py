@@ -31,7 +31,7 @@ class update:
             position = (mapX * self.MapInstance.chipSize[0], y * self.MapInstance.chipSize[1])
             if index in self.MapInstance.structureList:
                 structure = Structure.Structure(self, chip, position)
-                self.MapInstance.display.collide.blocks.add(structure)
-                self.MapInstance.display.collide.blocks.draw(self.MapInstance.map)
+                self.MapInstance.display.blocks.add(structure)
+                self.MapInstance.display.blocks.draw(self.MapInstance.map)
             else:
                 self.MapInstance.map.blit(chip, position)

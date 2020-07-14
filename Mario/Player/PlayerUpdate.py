@@ -1,3 +1,5 @@
+#-*- coding: UTF-8 -*-
+
 from Player.Math import MoveX
 from Player.Math import MoveY
 

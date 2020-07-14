@@ -6,6 +6,7 @@ import Animator
 import Image
 
 from Player import PlayerUpdate
+import Collide
 
 PLAYER_Y = 772
 
