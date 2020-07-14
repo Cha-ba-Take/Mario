@@ -1,5 +1,5 @@
-from Player.Math import MoveX
-from Player.Math import MoveY
+from Player.Move import MoveX
+from Player.Move import MoveY
 
 from Player.Animation import Animation
 
