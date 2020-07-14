@@ -5,6 +5,7 @@ import pygame
 
 import Image
 from Map import MapUpdate
+from Map import Structure
 
 
 def loadMapData(mapName):
@@ -25,6 +26,7 @@ class Map:
         self.chipList = mapImage.split(baseChip, self.chipSize)
 
         self.mapData = loadMapData("course1-1.csv")
+        self.structureList = [1]
 
         self.map = self.make()
 
@@ -36,12 +38,19 @@ class Map:
         surface = pygame.Surface((1088, 960))
         for y in range(15):
             for x in range(17):
-                chip = self.chipList[int(self.mapData[y][x])]
+                index = int(self.mapData[y][x])
+                chip = self.chipList[index]
                 position = (x * self.chipSize[0], y * self.chipSize[1])
-                surface.blit(chip, position)
+                if index in self.structureList:
+                    structure = Structure.Structure(self, chip, position)
+                    self.display.collide.blocks.add(structure)
+                    self.display.collide.blocks.draw(surface)
+                else:
+                    surface.blit(chip, position)
         return surface
 
     def update(self):
+        # マップの更新
         MapUpdate.update(self)
 
     def draw(self):

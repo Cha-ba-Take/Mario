@@ -4,12 +4,15 @@ import pygame
 
 from Map import MapListener
 from Player import Player
+import Collide
 
 
 class Display:
     def __init__(self):
         self.screen = pygame.display.set_mode((1024, 960))
         pygame.display.set_caption("test")
+
+        self.collide = Collide.Collide(self)
 
         self.map = MapListener.Map(self)
 
