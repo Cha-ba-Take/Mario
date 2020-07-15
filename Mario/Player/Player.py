@@ -24,12 +24,9 @@ class Player(pygame.sprite.Sprite):
         self.animator = Animator.Animator(self.images)
 
         self.rect = self.image.get_rect(topleft=(self.display.marioX, PLAYER_Y))
-        self.y = PLAYER_Y
 
         self.state = 0
         self.previousState = 0
-
-        self.velocityY = 0
 
     def update(self, event):
         PlayerUpdate.update(self).update(event)

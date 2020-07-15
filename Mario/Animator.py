@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 
+
 class Animator:
     def __init__(self, images):
         self.images = images

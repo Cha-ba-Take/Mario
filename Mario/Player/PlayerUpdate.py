@@ -1,5 +1,5 @@
-from Player.Math import MoveX
-from Player.Math import MoveY
+from Player.Move import MoveX
+from Player.Move import MoveY
 
 from Player.Animation import Animation
 
@@ -21,4 +21,4 @@ class update:
         # プレイヤーの移動
         MoveX.MoveX(self.player).move()
         MoveY.MoveY(self.player).move()
-        self.player.rect = self.player.image.get_rect(topleft=(self.player.display.marioX, self.player.y))
+        self.player.rect = self.player.image.get_rect(topleft=(self.player.display.marioX, self.player.display.marioY))
