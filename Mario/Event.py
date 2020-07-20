@@ -19,8 +19,6 @@ class Event:
         self.state = 0
         self.previousState = 0
 
-        self.jump_check = 0
-
     def keyEventGet(self):
         # キーが押されているかを取得
         keyPressed = pygame.key.get_pressed()
@@ -40,6 +38,4 @@ class Event:
         elif self.keyEvent == 2:
             self.state = 2
         elif self.keyEvent == 4:
-            if self.jump_check is False:
-                self.state = 4
-                self.jump_check = 1
+            self.state = 4

@@ -38,14 +38,10 @@ class Map:
         surface = pygame.Surface((1088, 960))
         for y in range(15):
             for x in range(17):
+                print(x)
                 index = int(self.mapData[y][x])
                 chip = self.chipList[index]
                 position = (x * self.chipSize[0], y * self.chipSize[1])
-                """if index in self.structureList:
-                    structure = Structure.Structure(self, chip, position)
-                    self.display.collide.blocks.add(structure)
-                    self.display.collide.blocks.draw(surface)
-                else:"""
                 surface.blit(chip, position)
         return surface
 
@@ -56,10 +52,3 @@ class Map:
     def draw(self):
         # マップの描画
         self.display.screen.blit(self.map, (-(self.worldX % 64), 0))
-
-
-
-
-
-
-

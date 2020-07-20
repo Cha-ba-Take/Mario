@@ -18,4 +18,4 @@ class MoveY(Move.Move, ABC):
         if self.state == 0:
             self.player.display.velocityY = 0
         elif self.state == 4:
-            self.player.display.velocityY = 3*64
+            self.player.display.velocityY = 3
