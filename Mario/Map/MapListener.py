@@ -27,7 +27,6 @@ class Map:
 
         self.mapData = loadMapData("course1-1.csv")
         self.structureList = [1]
-
         self.map = self.make()
 
         self.worldX = 0
@@ -41,12 +40,7 @@ class Map:
                 index = int(self.mapData[y][x])
                 chip = self.chipList[index]
                 position = (x * self.chipSize[0], y * self.chipSize[1])
-                if index in self.structureList:
-                    structure = Structure.Structure(self, chip, position)
-                    self.display.collide.blocks.add(structure)
-                    self.display.collide.blocks.draw(surface)
-                else:
-                    surface.blit(chip, position)
+                surface.blit(chip, position)
         return surface
 
     def update(self):
@@ -56,10 +50,3 @@ class Map:
     def draw(self):
         # マップの描画
         self.display.screen.blit(self.map, (-(self.worldX % 64), 0))
-
-
-
-
-
-
-

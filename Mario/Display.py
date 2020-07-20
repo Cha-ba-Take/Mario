@@ -18,6 +18,9 @@ class Display:
 
         self.marioX = 160
         self.velocityX = 0
+        self.marioY = 772
+        self.velocityY = 0
+
         self.player = Player.Player(self)
 
         self.frame = 0
