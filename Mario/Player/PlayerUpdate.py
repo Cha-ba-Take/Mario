@@ -13,13 +13,14 @@ class update:
         event.stateMachine()
         self.player.state = event.state
         self.player.previousState = event.previousState
+        self.player.previousKeyEvent = event.previousKeyEvent
         self.player.is_jump = event.is_jump
 
-        self.move()
+        self.move(event)
         Animation.animation(self.player).animation()
 
-    def move(self):
+    def move(self, event):
         # プレイヤーの移動
-        MoveX.MoveX(self.player).move()
-        MoveY.MoveY(self.player).move()
+        MoveX.MoveX(self.player, event).move()
+        MoveY.MoveY(self.player, event).move()
         self.player.rect = self.player.image.get_rect(topleft=(self.player.display.marioX, self.player.display.marioY))

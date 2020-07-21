@@ -18,7 +18,10 @@ class Event:
         self.previousKeyEvent = 0
         self.state = 0
         self.previousState = 0
-        self.is_jump = False
+        self.is_jump = {
+            "first": False,
+            "jumping": False
+        }
 
     def keyEventGet(self):
         # キーが押されているかを取得
@@ -39,5 +42,7 @@ class Event:
         elif self.keyEvent == 2:
             self.state = 2
         elif self.keyEvent == 4:
-            if self.previousKeyEvent == 0:
-                self.is_jump = True
+            self.state = 4
+            if self.previousKeyEvent == 0 and self.is_jump["jumping"] is False:
+                self.is_jump["jumping"] = True
+

@@ -6,8 +6,9 @@ from Player.Move import Move
 
 
 class MoveX(Move.Move, ABC):
-    def __init__(self, player):
+    def __init__(self, player, event):
         self.player = player
+        self.event = event
         self.state = self.player.state
 
     def move(self):
@@ -23,6 +24,8 @@ class MoveX(Move.Move, ABC):
         if self.state == 0:
             self.player.display.velocityX = 0
         elif self.state == 1:
-            self.player.display.velocityX = 4
+            if self.event.is_jump["jumping"] is False:
+                self.player.display.velocityX = 4
         elif self.state == 2:
-            self.player.display.velocityX = -4
+            if self.event.is_jump["jumping"] is False:
+                self.player.display.velocityX = -4
