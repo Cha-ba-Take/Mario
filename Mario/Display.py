@@ -17,6 +17,7 @@ class Display:
         self.map = MapListener.Map(self)
 
         self.marioX = 160
+        self.world_marioX = self.marioX
         self.velocityX = 0
         self.marioY = 772
         self.velocityY = 0
