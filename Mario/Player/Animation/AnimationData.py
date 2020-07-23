@@ -1,20 +1,37 @@
+# -*- coding: UTF-8-*-
+
 from Player.Animation import AnimationDataList
 
 
-class data:
+class AnimationData:
     def __init__(self, player):
         self.player = player
-        self.state = self.player.state
+        self.state = self.player.event.state
+        self.isJump = self.player.event.isJump
         self.animationData = None
 
     def getAnimationData(self):
         # プレイヤーのアニメーションデータを取得
         if self.state == 0:
-            self.animationData = AnimationDataList.IDLE
+            if self.player.direction:
+                self.animationData = AnimationDataList.RIGHT_IDLE
+            else:
+                self.animationData = AnimationDataList.LEFT_IDLE
         elif self.state == 1:
-            self.animationData = AnimationDataList.LEFT
-        elif self.state == 2:
-            self.animationData = AnimationDataList.RIGHT
-        elif self.state == 4 or self.state == 5:
-            self.animationData = AnimationDataList.JUMP
+            if self.player.direction:
+                self.animationData = AnimationDataList.RIGHT_WALK
+            else:
+                self.animationData = AnimationDataList.LEFT_WALK
+
+        if self.isJump["jumping"]:
+            if self.player.direction:
+                self.animationData = AnimationDataList.RIGHT_JUMP
+            else:
+                self.animationData = AnimationDataList.LEFT_JUMP
+        else:
+            if self.state == 2:
+                if self.player.direction:
+                    self.animationData = AnimationDataList.RIGHT_IDLE
+                else:
+                    self.animationData = AnimationDataList.LEFT_IDLE
         return self.animationData

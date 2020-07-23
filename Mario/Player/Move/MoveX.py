@@ -6,16 +6,14 @@ from Player.Move import Move
 
 
 class MoveX(Move.Move, ABC):
-    def __init__(self, player, event):
+    def __init__(self, player):
+        super().__init__(player)
         self.player = player
-        self.event = event
-        self.state = self.player.state
+        self.state = self.player.event.state
 
     def move(self):
         # X軸方向の移動
         self.getVelocity()
-        if self.player.display.collide.onBlocks(self.player.rect):
-            self.player.display.velocityX = 0
         self.player.display.marioX += self.player.display.velocityX
         self.player.display.marioX = min(max(self.player.display.marioX, -4), 512)
 
@@ -24,8 +22,7 @@ class MoveX(Move.Move, ABC):
         if self.state == 0:
             self.player.display.velocityX = 0
         elif self.state == 1:
-            if self.event.is_jump["jumping"] is False:
+            if self.player.direction:
                 self.player.display.velocityX = 4
-        elif self.state == 2:
-            if self.event.is_jump["jumping"] is False:
+            else:
                 self.player.display.velocityX = -4

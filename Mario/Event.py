@@ -18,7 +18,7 @@ class Event:
         self.previousKeyEvent = 0
         self.state = 0
         self.previousState = 0
-        self.is_jump = {
+        self.isJump = {
             "first": False,
             "jumping": False
         }
@@ -40,9 +40,8 @@ class Event:
         elif self.keyEvent == 1:
             self.state = 1
         elif self.keyEvent == 2:
-            self.state = 2
+            self.state = 1
         elif self.keyEvent == 4:
-            self.state = 4
-            if self.previousKeyEvent == 0 and self.is_jump["jumping"] is False:
-                self.is_jump["jumping"] = True
-
+            self.state = 2
+            if self.previousKeyEvent == 0 and self.isJump["jumping"] is False:
+                self.isJump["jumping"] = True

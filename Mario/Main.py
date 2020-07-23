@@ -7,7 +7,7 @@ import Event
 
 pygame.init()
 event = Event.Event()
-display = Display.Display()
+display = Display.Display(event)
 
 frame = 0
 clock = pygame.time.Clock()
@@ -15,7 +15,7 @@ while True:
     Event.quitEvent()
     event.keyEventGet()
 
-    display.update(event)
+    display.update()
     display.draw()
 
     clock.tick(60)

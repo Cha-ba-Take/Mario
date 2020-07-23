@@ -1,11 +1,13 @@
+# -*- coding: UTF-8 -*-
+
 from Player.Animation import AnimationData
 
 
-class animation:
+class Animation:
     def __init__(self, player):
         self.player = player
 
-    def animation(self):
+    def playerAnimation(self):
         # プレイヤーのアニメーション
-        data = AnimationData.data(self.player)
+        data = AnimationData.AnimationData(self.player)
         self.player.image = self.player.animator.getImage(self.player.display.frame, data.getAnimationData())

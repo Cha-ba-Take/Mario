@@ -5,7 +5,6 @@ import pygame
 
 import Image
 from Map import MapUpdate
-from Map import Structure
 
 
 def loadMapData(mapName):
@@ -45,7 +44,7 @@ class Map:
 
     def update(self):
         # マップの更新
-        MapUpdate.update(self)
+        MapUpdate.MapUpdate(self)
 
     def draw(self):
         # マップの描画

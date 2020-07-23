@@ -4,15 +4,14 @@ import pygame
 
 from Map import MapListener
 from Player import Player
-import Collide
 
 
 class Display:
-    def __init__(self):
+    def __init__(self, event):
         self.screen = pygame.display.set_mode((1024, 960))
         pygame.display.set_caption("test")
 
-        self.collide = Collide.Collide(self)
+        self.event = event
 
         self.map = MapListener.Map(self)
 
@@ -25,10 +24,10 @@ class Display:
 
         self.frame = 0
 
-    def update(self, event):
+    def update(self):
         # 画面の更新
         self.map.update()
-        self.player.update(event)
+        self.player.update()
 
         self.frame += 1
 

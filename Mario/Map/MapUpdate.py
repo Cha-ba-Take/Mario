@@ -1,11 +1,7 @@
 # -*- coding: UTF-8 -*-
 
-import pygame
 
-from Map import Structure
-
-
-class update:
+class MapUpdate:
     def __init__(self, Map):
         self.MapInstance = Map
         self.MapInstance.previousWorldX = self.MapInstance.worldX
@@ -26,7 +22,8 @@ class update:
         if self.MapInstance.display.marioX == 512:
             self.MapInstance.worldX += self.MapInstance.display.velocityX
 
-        if self.MapInstance.previousWorldX % 64 <= self.MapInstance.worldX % 64: return False
+        if self.MapInstance.previousWorldX % 64 <= self.MapInstance.worldX % 64:
+            return False
         return True
 
     def blit(self):

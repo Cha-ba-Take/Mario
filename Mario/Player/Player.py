@@ -13,7 +13,6 @@ PLAYER_Y = 772
 class Player(pygame.sprite.Sprite):
     def __init__(self, display):
         self.display = display
-
         pygame.sprite.Sprite.__init__(self)
 
         self.playerImage = Image.Image("mario.png", True)
@@ -25,11 +24,12 @@ class Player(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect(topleft=(self.display.marioX, PLAYER_Y))
 
-        self.state = 0
-        self.previousState = 0
+        self.event = self.display.event
 
-    def update(self, event):
-        PlayerUpdate.update(self).update(event)
+        self.direction = True
+
+    def update(self):
+        PlayerUpdate.PlayerUpdate(self).update()
 
     def draw(self):
         # プレイヤーの描画

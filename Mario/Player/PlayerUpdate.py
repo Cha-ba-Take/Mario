@@ -1,26 +1,34 @@
+# -*- coding: UTF-8 -*-
+
 from Player.Move import MoveX
 from Player.Move import MoveY
 
 from Player.Animation import Animation
 
 
-class update:
+class PlayerUpdate:
     def __init__(self, player):
         self.player = player
+        self.event = self.player.event
+        self.marioX = self.player.display.marioX
+        self.marioY = self.player.display.marioY
 
-    def update(self, event):
+    def update(self):
         # プレイヤーの更新
-        event.stateMachine()
-        self.player.state = event.state
-        self.player.previousState = event.previousState
-        self.player.previousKeyEvent = event.previousKeyEvent
-        self.player.is_jump = event.is_jump
+        self.event.stateMachine()
 
-        self.move(event)
-        Animation.animation(self.player).animation()
+        self.getDirection()
+        self.move()
+        Animation.Animation(self.player).playerAnimation()
 
-    def move(self, event):
+    def getDirection(self):
+        if self.event.keyEvent == 1:
+            self.player.direction = True
+        elif self.event.keyEvent == 2:
+            self.player.direction = False
+
+    def move(self):
         # プレイヤーの移動
-        MoveX.MoveX(self.player, event).move()
-        MoveY.MoveY(self.player, event).move()
-        self.player.rect = self.player.image.get_rect(topleft=(self.player.display.marioX, self.player.display.marioY))
+        MoveX.MoveX(self.player).move()
+        MoveY.MoveY(self.player).move()
+        self.player.rect = self.player.image.get_rect(topleft=(self.marioX, self.marioY))
