@@ -29,7 +29,7 @@ class MoveY(Move.Move, ABC):
         # i = self.event.isJump["jumping"]
         # print(f"state: {self.state} \n previousKeyEvent: {self.event.previousKeyEvent}")
         # print(f"first: {a} \n jumping: {i}")
-        if self.player.event.state == 2:
+        if self.player.event.state == 2 or self.player.event.state == 3:
             if self.player.event.isJump["jumping"] is True:
                 if self.player.event.isJump["first"] is False:
                     self.player.event.isJump["first"] = True

@@ -45,3 +45,11 @@ class Event:
             self.state = 2
             if self.previousKeyEvent == 0 and self.isJump["jumping"] is False:
                 self.isJump["jumping"] = True
+        elif self.keyEvent == 5:
+            self.state = 3
+            if self.previousKeyEvent == 1 and self.isJump["jumping"] is False:
+                self.isJump["jumping"] = True
+        elif self.keyEvent == 6:
+            self.state = 3
+            if self.previousKeyEvent == 2 and self.isJump["jumping"] is False:
+                self.isJump["jumping"] = True

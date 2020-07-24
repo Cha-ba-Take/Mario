@@ -34,4 +34,9 @@ class AnimationData:
                     self.animationData = AnimationDataList.RIGHT_IDLE
                 else:
                     self.animationData = AnimationDataList.LEFT_IDLE
+            if self.state == 3:
+                if self.player.direction:
+                    self.animationData = AnimationDataList.RIGHT_WALK
+                else:
+                    self.animationData = AnimationDataList.LEFT_WALK
         return self.animationData
