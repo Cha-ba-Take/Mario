@@ -21,6 +21,8 @@ class MoveY(Move.Move, ABC):
             self.player.event.isJump["first"] = False
             self.player.event.isJump["jumping"] = False
 
+        print(f"VelocityY: {self.player.display.velocityY}")
+
         # print(f"marioY: {self.player.display.marioY}")
 
     def getVelocity(self):
@@ -33,14 +35,16 @@ class MoveY(Move.Move, ABC):
             if self.player.event.isJump["jumping"] is True:
                 if self.player.event.isJump["first"] is False:
                     self.player.event.isJump["first"] = True
-                    self.player.display.velocityY = -12
+                    self.player.display.velocityY = -12.5
                 else:
                     if self.player.display.velocityY < 0:
-                        self.player.display.velocityY += 0.375
+                        self.player.display.velocityY += 0.3
+                        if self.player.display.velocityY > -4:
+                            self.player.display.velocityY += 0.5
                     else:
-                        if self.player.display.velocityY < 12:
-                            self.player.display.velocityY += 1.3125
+                        if self.player.display.velocityY < 12.5:
+                            self.player.display.velocityY += 1.9
             return
         else:
-            if self.player.display.velocityY < 12:
-                self.player.display.velocityY += 1.3125
+            if self.player.display.velocityY < 12.5:
+                self.player.display.velocityY += 1.9
