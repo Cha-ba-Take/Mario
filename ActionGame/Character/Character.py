@@ -13,30 +13,30 @@ class Character(pygame.sprite.Sprite):
     def __init__(self, gameManager, jsonFilePath):
         self.gameManager = gameManager
 
-        self.constants = self.__loadJson(jsonFilePath)
+        self.constants = self.loadJson(jsonFilePath)
 
-        self.__imageData = self.constants["imageData"]
-        self.images = self.__getImage()
+        self.imageData = self.constants["imageData"]
+        self.images = self.getImage()
         self.image = self.images[0]
 
-        self.__initialPositionData = self.constants["initialPositionData"]
-        self.x = self.__initialPositionData["x"]
-        self.y = self.__initialPositionData["y"]
-        self.__rect = self.image.get_rect(left=self.x, top=self.y)
+        self.initialPositionData = self.constants["initialPositionData"]
+        self.x = self.initialPositionData["x"]
+        self.y = self.initialPositionData["y"]
+        self.rect = self.image.get_rect(left=self.x, top=self.y)
 
         self.isGround = True
 
         self.move = Move(self)
         self.animation = Animation(self)
 
-    def __loadJson(self, path):
+    def loadJson(self, path):
         file = open(path, "r")
 
         return json.load(file)
 
-    def __getImage(self):
-        baseImage = Image.loadImage(self.__imageData["path"])
-        imageList = Image.splitImage(baseImage, self.__imageData["length"])
+    def getImage(self):
+        baseImage = Image.loadImage(self.imageData["path"])
+        imageList = Image.splitImage(baseImage, self.imageData["length"])
 
         return Image.flipImage(imageList)
 

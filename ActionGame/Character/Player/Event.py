@@ -6,58 +6,58 @@ from pygame.locals import *
 
 class Event:
     def __init__(self, player):
-        self.__player = player
+        self.player = player
 
-        self.__keyEvent = 0
-        self.__previousKeyEvent = 0
+        self.keyEvent = 0
+        self.previousKeyEvent = 0
 
-        self.__state = 0
+        self.state = 0
 
-    def __defineKeyEvent(self):
+    def defineKeyEvent(self):
         keyPressed = pygame.key.get_pressed()
 
-        self.__previousKeyEvent = self.__keyEvent
-        self.__keyEvent = 0
+        self.previousKeyEvent = self.keyEvent
+        self.keyEvent = 0
 
         keys = [K_RIGHT, K_LEFT, K_SPACE]
 
         for i in range(len(keys)):
             if keyPressed[keys[i]]:
-                self.__keyEvent += 2 ** i
+                self.keyEvent += 2 ** i
 
-    def __stateMachine(self):
-        isGround = self.__player.isGround
+    def stateMachine(self):
+        isGround = self.player.isGround
 
-        if self.__keyEvent == 1:
-            self.__state = 1
-        elif self.__keyEvent == 2:
-            self.__state = 2
-        elif self.__keyEvent == 4:
-            if self.__previousKeyEvent == 0:
-                if self.__player.isJump["jumping"] is False and isGround:
-                    self.__player.isJump["init"] = True
-                    self.__player.isJump["jumping"] = True
-        elif self.__keyEvent == 5:
-            self.__state = 1
-            if self.__previousKeyEvent == 1:
-                if self.__player.isJump["jumping"] is False and isGround:
-                    self.__player.isJump["init"] = True
-                    self.__player.isJump["jumping"] = True
-        elif self.__keyEvent == 6:
-            self.__state = 2
-            if self.__previousKeyEvent == 2:
-                if self.__player.isJump["jumping"] is False and isGround:
-                    self.__player.isJump["init"] = True
-                    self.__player.isJump["jumping"] = True
+        if self.keyEvent == 1:
+            self.state = 1
+        elif self.keyEvent == 2:
+            self.state = 2
+        elif self.keyEvent == 4:
+            if self.previousKeyEvent == 0:
+                if self.player.isJump["jumping"] is False and isGround:
+                    self.player.isJump["init"] = True
+                    self.player.isJump["jumping"] = True
+        elif self.keyEvent == 5:
+            self.state = 1
+            if self.previousKeyEvent == 1:
+                if self.player.isJump["jumping"] is False and isGround:
+                    self.player.isJump["init"] = True
+                    self.player.isJump["jumping"] = True
+        elif self.keyEvent == 6:
+            self.state = 2
+            if self.previousKeyEvent == 2:
+                if self.player.isJump["jumping"] is False and isGround:
+                    self.player.isJump["init"] = True
+                    self.player.isJump["jumping"] = True
         else:
-            self.__state = 0
+            self.state = 0
 
     def defineState(self):
-        self.__defineKeyEvent()
-        self.__stateMachine()
+        self.defineKeyEvent()
+        self.stateMachine()
 
     def getState(self):
-        return self.__state
+        return self.state
 
     def getKeyEvent(self):
-        return self.__keyEvent
+        return self.keyEvent

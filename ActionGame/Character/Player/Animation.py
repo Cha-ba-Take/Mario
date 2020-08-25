@@ -6,38 +6,38 @@ class Animation(characterAnimation):
     def __init__(self, player):
         super(Animation, self).__init__(player)
 
-        self.__player = player
+        self.player = player
 
-    def __getState(self):
-        state = self.__player.event.getState()
-        isSlip = self.__player.move.isSlip()
-        direction = self.__player.move.getDirection()
-        isJump = self.__player.isJump
+    def getState(self):
+        state = self.player.event.getState()
+        isSlip = self.player.move.isSlip()
+        direction = self.player.move.getDirection()
+        isJump = self.player.isJump
 
         if state == 1:
             if isSlip == 2:
-                self.__state = self.__data["leftLookBack"]
+                self.state = self.data["leftLookBack"]
             else:
-                self.__state = self.__data["rightWalk"]
+                self.state = self.data["rightWalk"]
         elif state == 2:
             if isSlip == 1:
-                self.__state = self.__data["rightLookBack"]
+                self.state = self.data["rightLookBack"]
             else:
-                self.__state = self.__data["leftWalk"]
+                self.state = self.data["leftWalk"]
         else:
             if direction == 1:
                 if isSlip == 1:
-                    self.__state = self.__data["rightSlip"]
+                    self.state = self.data["rightSlip"]
                 elif isSlip == 0:
-                    self.__state = self.__data["rightIdle"]
+                    self.state = self.data["rightIdle"]
             else:
                 if isSlip == 2:
-                    self.__state = self.__data["leftSlip"]
+                    self.state = self.data["leftSlip"]
                 elif isSlip == 0:
-                    self.__state = self.__data["leftIdle"]
+                    self.state = self.data["leftIdle"]
 
         if isJump["jumping"]:
             if direction == 1:
-                self.__state = self.__data["rightJump"]
+                self.state = self.data["rightJump"]
             else:
-                self.__state = self.__data["leftJump"]
+                self.state = self.data["leftJump"]

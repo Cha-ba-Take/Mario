@@ -2,31 +2,31 @@
 
 class Animation:
     def __init__(self, character):
-        self.__character = character
+        self.character = character
 
-        self.__data = self.__character.constants["animationData"]
+        self.data = self.character.constants["animationData"]
 
-        self.__state = None
+        self.state = None
 
-    def __getState(self):
-        state = self.__character.event.getState()
-        isSlip = self.__character.move.isSlip()
-        direction = self.__character.move.getDirection()
-        isJump = self.__character.isJump
+    def getState(self):
+        state = self.character.event.getState()
+        isSlip = self.character.move.isSlip()
+        direction = self.character.move.getDirection()
+        isJump = self.character.isJump
 
         if state == 1:
-            self.__state = self.__data["rightWalk"]
+            self.state = self.data["rightWalk"]
         elif state == 2:
-            self.__state = self.__data["leftWalk"]
+            self.state = self.data["leftWalk"]
 
     def getIndex(self):
-        self.__getState()
+        self.getState()
 
-        times = self.__state[0]
-        locate = self.__state[1]
-        animationCycle = self.__state[2]
+        times = self.state[0]
+        locate = self.state[1]
+        animationCycle = self.state[2]
 
-        frame = self.__character.gameManager.frame
+        frame = self.character.gameManager.frame
 
         index = locate if animationCycle is None else int(frame / animationCycle % times) + locate
 

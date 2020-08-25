@@ -12,34 +12,34 @@ class GameManager:
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
 
-        self.__player = Player(self)
+        self.player = Player(self)
 
         self.frame = 0
-        self.__clock = pygame.time.Clock()
+        self.clock = pygame.time.Clock()
 
     def process(self):
-        self.__quit()
+        self.quit()
 
         self.screen.fill(Color("#000000"))
 
-        self.__update()
-        self.__draw()
+        self.update()
+        self.draw()
 
         self.frame += 1
 
-        self.__clock.tick(60)
+        self.clock.tick(60)
 
-    def __quit(self):
+    def quit(self):
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
 
-    def __update(self):
-        self.__player.update()
+    def update(self):
+        self.player.update()
 
-    def __draw(self):
-        self.__player.draw()
+    def draw(self):
+        self.player.draw()
 
         pygame.display.update()

@@ -7,41 +7,41 @@ class Move(characterMove):
     def __init__(self, player):
         super(Move, self).__init__(player)
 
-        self.__player = player
+        self.player = player
 
-        self.__verticalPhysicalData = self.__player.constants["verticalPhysicalData"]
-        self.__riseInitialVelocity = self.__verticalPhysicalData["riseInitialVelocity"]
-        self.__riseAcceleration = self.__verticalPhysicalData["riseAcceleration"]
+        self.verticalPhysicalData = self.player.constants["verticalPhysicalData"]
+        self.riseInitialVelocity = self.verticalPhysicalData["riseInitialVelocity"]
+        self.riseAcceleration = self.verticalPhysicalData["riseAcceleration"]
 
-    def __moveY(self):
-        if self.__player.isJump["init"] or self.__player.isJump["rise"]:
-            self.__jump()
+    def moveY(self):
+        if self.player.isJump["init"] or self.player.isJump["rise"]:
+            self.jump()
         else:
-            self.__fall()
+            self.fall()
 
-        self.__player.y += self.__verticalVelocity
-        self.__player.y = min(self.__player.y, 536)
+        self.player.y += self.verticalVelocity
+        self.player.y = min(self.player.y, 536)
 
-        if self.__player.y == 536:
-            self.__player.isJump["jumping"] = False
+        if self.player.y == 536:
+            self.player.isJump["jumping"] = False
 
-    def __jump(self):
-        if self.__player.isJump["init"]:
-            self.__verticalVelocity = self.__riseInitialVelocity
-            self.__player.isJump["init"] = False
-            self.__player.isJump["rise"] = True
-        if self.__player.event.getKeyEvent() in (4, 5, 6):
-            self.__verticalVelocity += self.__riseAcceleration
-            if self.__verticalVelocity >= 0:
-                self.__verticalVelocity = 0
-                self.__player.isJump["rise"] = False
+    def jump(self):
+        if self.player.isJump["init"]:
+            self.verticalVelocity = self.riseInitialVelocity
+            self.player.isJump["init"] = False
+            self.player.isJump["rise"] = True
+        if self.player.event.getKeyEvent() in (4, 5, 6):
+            self.verticalVelocity += self.riseAcceleration
+            if self.verticalVelocity >= 0:
+                self.verticalVelocity = 0
+                self.player.isJump["rise"] = False
         else:
-            self.__player.isJump["rise"] = False
+            self.player.isJump["rise"] = False
 
     def isSlip(self):
-        if self.__horizontalVelocity > 0:
+        if self.horizontalVelocity > 0:
             return 1
-        elif self.__horizontalVelocity < 0:
+        elif self.horizontalVelocity < 0:
             return 2
         else:
             return 0
