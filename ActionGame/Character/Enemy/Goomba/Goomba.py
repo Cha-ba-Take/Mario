@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from ActionGame.GameObject.Character.Character import Character
+from Character.Character import Character
 from .Event import Event
 from .Move import Move
 from .Animation import Animation
@@ -8,7 +8,7 @@ from .Animation import Animation
 
 class Goomba(Character):
     def __init__(self, gameManager):
-        super(Goomba, self).__init__(gameManager, "GameObject\Character\Enemy\Goomba\Data\Constants.json")
+        super(Goomba, self).__init__(gameManager, "ActionGame\Character\Enemy\Goomba\Data\Constants.json")
 
         self.event = Event(self)
         self.move = Move(self)

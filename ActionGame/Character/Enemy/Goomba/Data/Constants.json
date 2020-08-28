@@ -1,0 +1,28 @@
+{
+    "animationData" : {
+        "walk" : [2, 0, 8]
+    },
+
+    "imageData" : {
+        "path" : "ActionGame/Character/Enemy/Goomba/Data/Goomba.png",
+        "length" : 1
+    },
+
+    "initialPositionData" : {
+        "x" : 600,
+        "y" : 0
+    },
+
+    "horizontalPhysicalData" : {
+        "velocityLimit" : 2,
+        "startingAcceleration" : 0.25,
+        "stoppingAcceleration" : -0.25
+    },
+
+    "verticalPhysicalData" : {
+        "fallVelocityLimit" : 16,
+        "fallAcceleration" : 1.75,
+        "riseInitialVelocity" : -16,
+        "riseAcceleration" : 0.5
+    }
+}

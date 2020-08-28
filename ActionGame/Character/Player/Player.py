@@ -1,14 +1,19 @@
 # -*- coding: UTF-8 -*-
 
-from ActionGame.GameObject.Character.Character import Character
 from .Event import Event
 from .Move import Move
 from .Animation import Animation
 
+import sys
+sys.path.append('../Character')
+
+from ..Character import Character
+
+
 
 class Player(Character):
     def __init__(self, gameManager):
-        super(Player, self).__init__(gameManager, "GameObject\Character\Player\Data\Constants.json")
+        super(Player, self).__init__(gameManager, "ActionGame\Character\Player\Data\Constants.json")
 
         self.isJump = {
             "init" : False,
