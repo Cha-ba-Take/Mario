@@ -1,20 +1,14 @@
 # -*- coding: UTF-8 -*-
 
-from Character.Character import Character
+from ActionGame.GameObject.Character.Character import Character
 from .Event import Event
 from .Move import Move
 from .Animation import Animation
 
 
-class Player(Character):
+class Goomba(Character):
     def __init__(self, gameManager):
-        super(Player, self).__init__(gameManager, "Character\Player\Data\Constants.json")
-
-        self.isJump = {
-            "init" : False,
-            "rise" : False,
-            "jumping" : False
-        }
+        super(Goomba, self).__init__(gameManager, "GameObject\Character\Enemy\Goomba\Data\Constants.json")
 
         self.event = Event(self)
         self.move = Move(self)

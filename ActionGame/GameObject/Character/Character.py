@@ -4,7 +4,7 @@ import json
 
 import pygame
 
-from ActionGame import Image
+from ActionGame.GameObject import Image
 from .Move import Move
 from .Animation import Animation
 

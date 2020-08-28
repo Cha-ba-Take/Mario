@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from Character.Move import Move as characterMove
+from ActionGame.GameObject.Character.Move import Move as characterMove
 
 
 class Move(characterMove):

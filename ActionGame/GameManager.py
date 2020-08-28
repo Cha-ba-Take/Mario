@@ -4,7 +4,8 @@ import pygame
 from pygame.locals import *
 import sys
 
-from Character.Player.Player import Player
+from ActionGame.GameObject.Character.Player.Player import Player
+from ActionGame.GameObject.Character.Enemy.EnemyFactory import EnemyFactory
 
 
 class GameManager:
@@ -13,6 +14,7 @@ class GameManager:
         self.screen = pygame.display.set_mode((800, 600))
 
         self.player = Player(self)
+        self.enemyFactory = EnemyFactory(self)
 
         self.frame = 0
         self.clock = pygame.time.Clock()
@@ -37,9 +39,15 @@ class GameManager:
 
 
     def update(self):
+        if self.frame % 60 == 0:
+            self.enemyFactory.make("Goomba")
+        self.enemyFactory.update()
         self.player.update()
 
     def draw(self):
+        self.screen.fill(Color("#000000"))
+
+        self.enemyFactory.draw()
         self.player.draw()
 
         pygame.display.update()
