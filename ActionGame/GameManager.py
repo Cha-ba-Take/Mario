@@ -4,23 +4,34 @@ import pygame
 from pygame.locals import *
 import sys
 
+from Background.Background import Background
 from Character.Player.Player import Player
 from Character.Enemy.EnemyFactory import EnemyFactory
+from ScrollSystem import ScrollSystem
+
+screenMagnification = 4
+screenWidth = 256 * screenMagnification
+screenHeight = 240 * screenMagnification
+screenSize = (screenWidth, screenHeight)
+collideSurfaceSize = (screenWidth + 64, screenHeight)
 
 
 class GameManager:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((800, 600))
+        self.screen = pygame.display.set_mode(screenSize)
+        self.collideSurface = pygame.Surface(collideSurfaceSize)
 
+        self.background = Background(self)
         self.player = Player(self)
         self.enemyFactory = EnemyFactory(self)
+        self.scrollSystem = ScrollSystem(self)
 
         self.frame = 0
         self.clock = pygame.time.Clock()
 
     def process(self):
-        self.quit()
+        self.gameQuit()
 
         self.update()
         self.draw()
@@ -29,23 +40,31 @@ class GameManager:
 
         self.clock.tick(60)
 
-    def quit(self):
+    def gameQuit(self):
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
-
     def update(self):
+        self.background.update()
+
         if self.frame % 45 == 0:
             self.enemyFactory.make("Goomba")
         self.enemyFactory.update()
+
         self.player.update()
 
-    def draw(self):
-        self.screen.fill(Color("#AAAAAA"))
+        for i in range(len(self.enemyFactory.enemyList)):
+            if self.player.rect.colliderect(self.enemyFactory.enemyList[i].rect):
+                self.enemyFactory.enemyList.pop(i)
+                break
 
+    def draw(self):
+        self.collideSurface.fill((0, 0, 0))
+        self.background.draw()
         self.enemyFactory.draw()
         self.player.draw()
+        #self.screen.blit(self.collideSurface, (0, 0))
 
         pygame.display.update()
