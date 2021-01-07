@@ -1,22 +1,33 @@
 # -*- coding: UTF-8 -*-
 
+import pygame
+from pygame.locals import *
+
 from .Goomba.Goomba import Goomba
 
 class EnemyFactory:
     def __init__(self, gameManager):
         self.gameManager = gameManager
+
         self.enemyList = []
+
+        self.worldX = 0
+        self.previousWorldX = 0
+
 
     def make(self, name):
         if name == "Goomba":
             self.enemyList.append(Goomba(self.gameManager))
+        self.enemyList[-1].x = 1024
+        self.enemyList[-1].y = 766
 
     def update(self):
         for enemy in self.enemyList:
             enemy.update()
+            enemy.rect = enemy.image.get_rect(left=enemy.x, top=enemy.y)
 
         for i in range(len(self.enemyList)):
-            if self.enemyList[i].x < -64:
+            if self.enemyList[i].x < -64 or self.enemyList[i].y > 960:
                 self.enemyList.pop(i)
                 break
 

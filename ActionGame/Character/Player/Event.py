@@ -36,19 +36,16 @@ class Event:
             if self.previousKeyEvent == 0:
                 if self.player.isJump["jumping"] is False and isGround:
                     self.player.isJump["init"] = True
-                    self.player.isJump["jumping"] = True
         elif self.keyEvent == 5:
             self.state = 1
             if self.previousKeyEvent == 1:
                 if self.player.isJump["jumping"] is False and isGround:
                     self.player.isJump["init"] = True
-                    self.player.isJump["jumping"] = True
         elif self.keyEvent == 6:
             self.state = 2
             if self.previousKeyEvent == 2:
                 if self.player.isJump["jumping"] is False and isGround:
                     self.player.isJump["init"] = True
-                    self.player.isJump["jumping"] = True
         else:
             self.state = 0
 

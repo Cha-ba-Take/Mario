@@ -4,12 +4,12 @@
     },
 
     "imageData" : {
-        "path" : "ActionGame/Character/Enemy/Goomba/Data/Goomba.png",
+        "path" : "Character/Enemy/Goomba/Data/Goomba.png",
         "length" : 1
     },
 
     "initialPositionData" : {
-        "x" : 600,
+        "x" : 0,
         "y" : 0
     },
 

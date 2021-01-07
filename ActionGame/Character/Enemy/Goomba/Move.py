@@ -22,10 +22,11 @@ class Move(characterMove):
                 self.walk()
 
         self.character.x += self.horizontalVelocity
-        self.character.x = min(self.character.x, 736)
+
+        if self.goomba.gameManager.player.x == 512:
+            self.character.x -= self.goomba.gameManager.player.move.horizontalVelocity
 
     def moveY(self):
         self.fall()
 
         self.goomba.y += self.verticalVelocity
-        self.goomba.y = min(self.goomba.y, 536)

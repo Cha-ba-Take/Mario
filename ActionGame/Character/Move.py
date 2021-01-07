@@ -36,7 +36,7 @@ class Move:
                 self.walk()
 
         self.character.x += self.horizontalVelocity
-        self.character.x = min(max(self.character.x, 0), 736)
+        self.character.x = min(max(self.character.x, 0), 512)
 
     def stop(self):
         if self.horizontalVelocity > 0:
@@ -56,9 +56,15 @@ class Move:
         self.fall()
 
         self.character.y += self.verticalVelocity
-        self.character.y = min(self.character.y, 536)
+        self.character.y = min(self.character.y, 896)
 
     def fall(self):
+        if self.character.isGround:
+            if self.verticalVelocity > 0:
+                self.verticalVelocity = 0
+                self.character.y = (self.character.y // 64 + 1) * 64
+            return
+
         if self.verticalVelocity < self.fallVelocityLimit:
             self.verticalVelocity += self.fallAcceleration
         else:

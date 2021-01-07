@@ -16,13 +16,14 @@ class Move(characterMove):
     def moveY(self):
         if self.player.isJump["init"] or self.player.isJump["rise"]:
             self.jump()
+            self.player.isJump["jumping"] = True
         else:
             self.fall()
 
         self.player.y += self.verticalVelocity
-        self.player.y = min(self.player.y, 536)
+        self.player.y = min(self.player.y, 896)
 
-        if self.player.y == 536:
+        if self.player.isGround:
             self.player.isJump["jumping"] = False
 
     def jump(self):
@@ -30,6 +31,8 @@ class Move(characterMove):
             self.verticalVelocity = self.riseInitialVelocity
             self.player.isJump["init"] = False
             self.player.isJump["rise"] = True
+            return
+
         if self.player.event.getKeyEvent() in (4, 5, 6):
             self.verticalVelocity += self.riseAcceleration
             if self.verticalVelocity >= 0:

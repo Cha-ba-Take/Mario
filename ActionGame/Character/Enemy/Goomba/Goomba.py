@@ -8,7 +8,9 @@ from .Animation import Animation
 
 class Goomba(Character):
     def __init__(self, gameManager):
-        super(Goomba, self).__init__(gameManager, "ActionGame\Character\Enemy\Goomba\Data\Constants.json")
+        super(Goomba, self).__init__(gameManager, "Character\Enemy\Goomba\Data\Constants.json")
+
+        self.initialPositionData = None
 
         self.event = Event(self)
         self.move = Move(self)
@@ -16,6 +18,7 @@ class Goomba(Character):
 
     def update(self):
         self.judgmentIsGround()
+        print(self.isGround)
         self.event.defineState()
         self.move.move()
         self.image = self.images[self.animation.getIndex()]

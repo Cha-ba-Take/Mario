@@ -13,7 +13,7 @@
     },
 
     "imageData" : {
-        "path" : "ActionGame/Character/Player/Data/player.png",
+        "path" : "Character/Player/Data/player.png",
         "length" : 6
     },
 
