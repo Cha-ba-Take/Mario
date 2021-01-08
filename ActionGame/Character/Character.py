@@ -28,7 +28,7 @@ class Character(pygame.sprite.Sprite):
         self.y = self.initialPositionData["y"]
         self.rect = self.image.get_rect(left=self.x, top=self.y)
 
-        self.isGround = True
+        self.isCollide = 0
 
         self.move = Move(self)
         self.animation = Animation(self)
@@ -49,30 +49,25 @@ class Character(pygame.sprite.Sprite):
             return True
         return False
 
-    def judgmentIsGround(self, xCorrection=0):
-        leftX = int(self.x + xCorrection)
-        rightX = int(self.x + self.rect.w - xCorrection - 1)
-        y = int(self.rect.y + self.rect.h + self.move.verticalVelocity)
-        if self.rect.y < 832:
-            if 0 <= self.rect.x <= 1088:
-                if self.getAtColor(leftX, y, "#FFFFFF"):
-                    self.isGround = True
-                elif self.getAtColor(rightX, y, "#FFFFFF"):
-                    self.isGround = True
-                else:
-                    self.isGround = False
-            else:
-                self.isGround = True
-
-        # -> デバッグ用
-        elif self.rect.y == 896:
-            self.isGround = True
-        else:
-            self.isGround = False
-        # <-
+    def collide(self, xCorrection=0):
+        right = int(self.x + self.rect.w)
+        left = int(self.x)
+        top = int(self.y)
+        bottom = int(self.y + self.rect.h)
+        horizontalVelocity = int(self.move.horizontalVelocity)
+        verticalVelocity = int(self.move.verticalVelocity)
+        self.isCollide = 0
+        if 0 <= left + horizontalVelocity and right + horizontalVelocity < 1088:
+            if self.getAtColor(right + horizontalVelocity, top + 1, "#FFFFFF") or self.getAtColor(right + horizontalVelocity, bottom - 1, "#FFFFFF"):
+                self.isCollide += 1
+            if self.getAtColor(left + horizontalVelocity, top + 1, "#FFFFFF") or self.getAtColor(left + horizontalVelocity, bottom - 1, "#FFFFFF"):
+                self.isCollide += 2
+            if self.y < 832:
+                if self.getAtColor(left, bottom + verticalVelocity, "#FFFFFF") or self.getAtColor(right, bottom + verticalVelocity, "#FFFFFF"):
+                    self.isCollide += 4
 
     def update(self):
-        self.judgmentIsGround()
+        self.collide()
         self.move.move()
         self.image = self.images[self.animation.getIndex()]
 

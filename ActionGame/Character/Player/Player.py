@@ -27,7 +27,7 @@ class Player(Character):
         self.animation = Animation(self)
 
     def update(self):
-        self.judgmentIsGround(12)
+        self.collide(12)
         self.event.defineState()
         self.move.move()
         self.rect = self.image.get_rect(left=self.x, top=self.y)

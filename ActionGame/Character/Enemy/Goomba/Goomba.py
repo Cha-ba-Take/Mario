@@ -17,8 +17,7 @@ class Goomba(Character):
         self.animation = Animation(self)
 
     def update(self):
-        self.judgmentIsGround()
-        print(self.isGround)
+        self.collide()
         self.event.defineState()
         self.move.move()
         self.image = self.images[self.animation.getIndex()]

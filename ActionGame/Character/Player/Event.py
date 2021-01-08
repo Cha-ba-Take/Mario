@@ -26,25 +26,23 @@ class Event:
                 self.keyEvent += 2 ** i
 
     def stateMachine(self):
-        isGround = self.player.isGround
-
         if self.keyEvent == 1:
             self.state = 1
         elif self.keyEvent == 2:
             self.state = 2
         elif self.keyEvent == 4:
             if self.previousKeyEvent == 0:
-                if self.player.isJump["jumping"] is False and isGround:
+                if self.player.isJump["jumping"] is False and self.player.isCollide in (4, 5, 6):
                     self.player.isJump["init"] = True
         elif self.keyEvent == 5:
             self.state = 1
             if self.previousKeyEvent == 1:
-                if self.player.isJump["jumping"] is False and isGround:
+                if self.player.isJump["jumping"] is False and self.player.isCollide in (4, 5, 6):
                     self.player.isJump["init"] = True
         elif self.keyEvent == 6:
             self.state = 2
             if self.previousKeyEvent == 2:
-                if self.player.isJump["jumping"] is False and isGround:
+                if self.player.isJump["jumping"] is False and self.player.isCollide in (4, 5, 6):
                     self.player.isJump["init"] = True
         else:
             self.state = 0

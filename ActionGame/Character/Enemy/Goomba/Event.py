@@ -11,7 +11,6 @@ class Event:
         self.state = 0
 
     def stateMachine(self):
-        isGround = self.goomba.isGround
         self.state = 2
 
     def defineState(self):

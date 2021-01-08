@@ -27,6 +27,7 @@ class Move(characterMove):
             self.character.x -= self.goomba.gameManager.player.move.horizontalVelocity
 
     def moveY(self):
-        self.fall()
-
+        if self.character.isCollide != 0:
+            if self.character.x > 0:
+                self.fall()
         self.goomba.y += self.verticalVelocity

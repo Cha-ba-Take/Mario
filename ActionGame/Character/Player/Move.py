@@ -18,12 +18,13 @@ class Move(characterMove):
             self.jump()
             self.player.isJump["jumping"] = True
         else:
-            self.fall()
+            if self.character.x > 0:
+                self.fall()
 
         self.player.y += self.verticalVelocity
         self.player.y = min(self.player.y, 896)
 
-        if self.player.isGround:
+        if self.player.isCollide in (4, 5, 6):
             self.player.isJump["jumping"] = False
 
     def jump(self):

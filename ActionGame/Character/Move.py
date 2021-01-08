@@ -23,17 +23,23 @@ class Move:
         if state == 0:
             self.stop()
         elif state == 1:
-            if self.horizontalVelocity < 0:
-                self.stop()
+            if self.character.isCollide in (1, 5):
+                self.horizontalVelocity = 0
             else:
-                self.direction = 1
-                self.walk()
+                if self.horizontalVelocity < 0:
+                    self.stop()
+                else:
+                    self.direction = 1
+                    self.walk()
         elif state == 2:
-            if self.horizontalVelocity > 0:
-                self.stop()
+            if self.character.isCollide in (2, 6):
+                self.horizontalVelocity = 0
             else:
-                self.direction = -1
-                self.walk()
+                if self.horizontalVelocity > 0:
+                    self.stop()
+                else:
+                    self.direction = -1
+                    self.walk()
 
         self.character.x += self.horizontalVelocity
         self.character.x = min(max(self.character.x, 0), 512)
@@ -59,7 +65,7 @@ class Move:
         self.character.y = min(self.character.y, 896)
 
     def fall(self):
-        if self.character.isGround:
+        if self.character.isCollide in (4, 5, 6):
             if self.verticalVelocity > 0:
                 self.verticalVelocity = 0
                 self.character.y = (self.character.y // 64 + 1) * 64
