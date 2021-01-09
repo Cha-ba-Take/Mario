@@ -16,6 +16,8 @@ class Player(Character):
     def __init__(self, gameManager):
         super(Player, self).__init__(gameManager, "Character\Player\Data\Constants.json")
 
+        self.collideChip.fill(Color("#FFFF00"))
+
         self.isJump = {
             "init" : False,
             "rise" : False,

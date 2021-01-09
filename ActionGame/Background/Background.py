@@ -42,16 +42,25 @@ class Background:
 
     def surfaceDraw(self, x, y, special=False):
         index = int(self.backgroundData[y][x])
-        chip = self.images[index]
+        if index < 33:
+            chip = self.images[index]
+        else:
+            chip = self.images[0]
         collideChip = pygame.Surface((64, 64))
+
         if special:
             position = (x * 64, y * 64)
         else:
             position = (1024, y * 64)
-        if index in (1, 17, 18, 19, 20):
+
+        if index in (1, 17, 18, 19, 20, 21, 31):
             collideChip.fill(Color("#FFFFFF"))
+        elif index == 33:
+            self.gameManager.enemyFactory.make("Goomba")
+
         else:
             collideChip.fill(Color("#000000"))
+
         self.collideSurface.blit(collideChip, position)
         self.surface.blit(chip, position)
 

@@ -18,8 +18,7 @@ class Move(characterMove):
             self.jump()
             self.player.isJump["jumping"] = True
         else:
-            if self.character.x > 0:
-                self.fall()
+            self.fall()
 
         self.player.y += self.verticalVelocity
         self.player.y = min(self.player.y, 896)

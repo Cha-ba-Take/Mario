@@ -8,6 +8,7 @@ class Move(characterMove):
         super(Move, self).__init__(goomba)
 
         self.goomba = goomba
+        self.direction = -1
 
         self.verticalPhysicalData = self.goomba.constants["verticalPhysicalData"]
 
@@ -18,13 +19,20 @@ class Move(characterMove):
             if self.horizontalVelocity > 0:
                 self.stop()
             else:
-                self.direction = -1
                 self.walk()
+
+        if self.goomba.isCollide in (5, 6):
+            self.direction *= -1
+
+        print(self.direction)
 
         self.character.x += self.horizontalVelocity
 
         if self.goomba.gameManager.player.x == 512:
-            self.character.x -= self.goomba.gameManager.player.move.horizontalVelocity
+            if self.direction == -1:
+                self.character.x -= self.goomba.gameManager.player.move.horizontalVelocity
+            else:
+                self.character.x -= self.goomba.gameManager.player.move.horizontalVelocity
 
     def moveY(self):
         if self.character.isCollide != 0:

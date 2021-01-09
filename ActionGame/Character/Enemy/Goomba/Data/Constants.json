@@ -16,7 +16,7 @@
     "horizontalPhysicalData" : {
         "velocityLimit" : 2,
         "startingAcceleration" : 0.25,
-        "stoppingAcceleration" : -0.25
+        "stoppingAcceleration" : 0
     },
 
     "verticalPhysicalData" : {

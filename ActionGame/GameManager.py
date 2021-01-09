@@ -49,8 +49,6 @@ class GameManager:
     def update(self):
         self.background.update()
 
-        if self.frame % 45 == 0:
-            self.enemyFactory.make("Goomba")
         self.enemyFactory.update()
 
         self.player.update()
@@ -65,6 +63,6 @@ class GameManager:
         self.background.draw()
         self.enemyFactory.draw()
         self.player.draw()
-        #self.screen.blit(self.collideSurface, (0, 0))
+        # self.screen.blit(self.collideSurface, (0, 0))
 
         pygame.display.update()

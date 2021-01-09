@@ -23,7 +23,7 @@ class Move:
         if state == 0:
             self.stop()
         elif state == 1:
-            if self.character.isCollide in (1, 5):
+            if self.character.isCollide == 5:
                 self.horizontalVelocity = 0
             else:
                 if self.horizontalVelocity < 0:
@@ -32,7 +32,7 @@ class Move:
                     self.direction = 1
                     self.walk()
         elif state == 2:
-            if self.character.isCollide in (2, 6):
+            if self.character.isCollide == 6:
                 self.horizontalVelocity = 0
             else:
                 if self.horizontalVelocity > 0:

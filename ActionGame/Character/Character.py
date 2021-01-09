@@ -44,27 +44,33 @@ class Character(pygame.sprite.Sprite):
 
         return Image.flipImage(imageList)
 
-    def getAtColor(self, x, y, color):
-        if self.gameManager.collideSurface.get_at((x, y)) == Color(color):
-            return True
+    def getAtColor(self, position, color):
+        try:
+            if self.gameManager.collideSurface.get_at(position[0]) == Color(color):
+                return True
+            elif self.gameManager.collideSurface.get_at(position[1]) == Color(color):
+                return True
+        except IndexError:
+            return False
         return False
 
     def collide(self, xCorrection=0):
-        right = int(self.x + self.rect.w)
-        left = int(self.x)
-        top = int(self.y)
-        bottom = int(self.y + self.rect.h)
         horizontalVelocity = int(self.move.horizontalVelocity)
         verticalVelocity = int(self.move.verticalVelocity)
+
+        top = ((self.x, self.rect.top - 4), (self.x + self.rect.w, self.rect.top - 4))
+        bottom = ((self.rect.left, self.rect.bottom + verticalVelocity + 4), (self.rect.right, self.rect.bottom + verticalVelocity + 4))
+        left = ((self.rect.left - 4, self.rect.top + 4), (self.rect.left - 4, self.rect.bottom - 4))
+        right = ((self.rect.right + 4, self.rect.top + 4), (self.rect.right + 4, self.rect.bottom - 4))
+
         self.isCollide = 0
-        if 0 <= left + horizontalVelocity and right + horizontalVelocity < 1088:
-            if self.getAtColor(right + horizontalVelocity, top + 1, "#FFFFFF") or self.getAtColor(right + horizontalVelocity, bottom - 1, "#FFFFFF"):
-                self.isCollide += 1
-            if self.getAtColor(left + horizontalVelocity, top + 1, "#FFFFFF") or self.getAtColor(left + horizontalVelocity, bottom - 1, "#FFFFFF"):
-                self.isCollide += 2
-            if self.y < 832:
-                if self.getAtColor(left, bottom + verticalVelocity, "#FFFFFF") or self.getAtColor(right, bottom + verticalVelocity, "#FFFFFF"):
-                    self.isCollide += 4
+
+        if self.getAtColor(right, "#FFFFFF"):
+            self.isCollide += 1
+        if self.getAtColor(left, "#FFFFFF"):
+            self.isCollide += 2
+        if self.getAtColor(bottom, "#FFFFFF"):
+            self.isCollide += 4
 
     def update(self):
         self.collide()

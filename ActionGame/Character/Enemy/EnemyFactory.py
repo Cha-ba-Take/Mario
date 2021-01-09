@@ -14,12 +14,11 @@ class EnemyFactory:
         self.worldX = 0
         self.previousWorldX = 0
 
-
     def make(self, name):
         if name == "Goomba":
             self.enemyList.append(Goomba(self.gameManager))
         self.enemyList[-1].x = 1024
-        self.enemyList[-1].y = 766
+        self.enemyList[-1].y = 768
 
     def update(self):
         for enemy in self.enemyList:
@@ -30,6 +29,7 @@ class EnemyFactory:
             if self.enemyList[i].x < -64 or self.enemyList[i].y > 960:
                 self.enemyList.pop(i)
                 break
+
 
     def draw(self):
         for enemy in self.enemyList:
