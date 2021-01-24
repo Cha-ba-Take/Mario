@@ -6,4 +6,3 @@ gameManager =  GameManager()
 
 while True:
     gameManager.process()
-      

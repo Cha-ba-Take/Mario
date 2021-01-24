@@ -12,19 +12,19 @@ class Move(characterMove):
 
         self.verticalPhysicalData = self.goomba.constants["verticalPhysicalData"]
 
+    def walk(self):
+        print(self.direction)
+        self.horizontalVelocity = self.horizontalVelocityLimit * self.direction
+
     def moveX(self):
         state = self.character.event.getState()
 
         if state == 2:
-            if self.horizontalVelocity > 0:
-                self.stop()
-            else:
-                self.walk()
-
-        if self.goomba.isCollide in (5, 6):
-            self.direction *= -1
-
-        print(self.direction)
+            if self.goomba.isCollide == 5:
+                self.direction = -1
+            elif self.goomba.isCollide == 6:
+                self.direction = 1
+            self.walk()
 
         self.character.x += self.horizontalVelocity
 
@@ -35,7 +35,5 @@ class Move(characterMove):
                 self.character.x -= self.goomba.gameManager.player.move.horizontalVelocity
 
     def moveY(self):
-        if self.character.isCollide != 0:
-            if self.character.x > 0:
-                self.fall()
+        self.fall()
         self.goomba.y += self.verticalVelocity

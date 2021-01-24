@@ -68,7 +68,7 @@ class Move:
         if self.character.isCollide in (4, 5, 6):
             if self.verticalVelocity > 0:
                 self.verticalVelocity = 0
-                self.character.y = (self.character.y // 64 + 1) * 64
+                self.character.y = ((self.character.y // 64) + 1) * 64
             return
 
         if self.verticalVelocity < self.fallVelocityLimit:

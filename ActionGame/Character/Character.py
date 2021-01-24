@@ -45,14 +45,18 @@ class Character(pygame.sprite.Sprite):
         return Image.flipImage(imageList)
 
     def getAtColor(self, position, color):
+        flag = 0
         try:
             if self.gameManager.collideSurface.get_at(position[0]) == Color(color):
-                return True
-            elif self.gameManager.collideSurface.get_at(position[1]) == Color(color):
-                return True
+                flag += 1
         except IndexError:
-            return False
-        return False
+            pass
+        try:
+            if self.gameManager.collideSurface.get_at(position[1]) == Color(color):
+                flag += 1
+        except IndexError:
+            pass
+        return flag
 
     def collide(self, xCorrection=0):
         horizontalVelocity = int(self.move.horizontalVelocity)

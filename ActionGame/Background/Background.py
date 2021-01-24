@@ -53,11 +53,12 @@ class Background:
         else:
             position = (1024, y * 64)
 
-        if index in (1, 17, 18, 19, 20, 21, 31):
+        if index in (1, 17, 18, 19, 20, 21, 31, 32):
             collideChip.fill(Color("#FFFFFF"))
         elif index == 33:
             self.gameManager.enemyFactory.make("Goomba")
-
+            self.gameManager.enemyFactory.enemyList[-1].x = 1024 + 16
+            self.gameManager.enemyFactory.enemyList[-1].y = y * 64 - 4
         else:
             collideChip.fill(Color("#000000"))
 

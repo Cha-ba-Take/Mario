@@ -17,8 +17,7 @@ class EnemyFactory:
     def make(self, name):
         if name == "Goomba":
             self.enemyList.append(Goomba(self.gameManager))
-        self.enemyList[-1].x = 1024
-        self.enemyList[-1].y = 768
+
 
     def update(self):
         for enemy in self.enemyList:
