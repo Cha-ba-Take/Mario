@@ -1,9 +1,7 @@
 # -*- coding: UTF-8 -*-
 
-import pygame
-from pygame.locals import *
-
 from .Goomba.Goomba import Goomba
+
 
 class EnemyFactory:
     def __init__(self, gameManager):
@@ -18,7 +16,6 @@ class EnemyFactory:
         if name == "Goomba":
             self.enemyList.append(Goomba(self.gameManager))
 
-
     def update(self):
         for enemy in self.enemyList:
             enemy.update()
@@ -28,7 +25,6 @@ class EnemyFactory:
             if self.enemyList[i].x < -64 or self.enemyList[i].y > 960:
                 self.enemyList.pop(i)
                 break
-
 
     def draw(self):
         for enemy in self.enemyList:

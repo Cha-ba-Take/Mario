@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 
-from Character.Character import Character
-from .Event import Event
-from .Move import Move
-from .Animation import Animation
+from ActionGame.Character import Character
+import Event
+import Move
+import Animation
 
 from pygame.locals import *
 
@@ -14,9 +14,9 @@ class Goomba(Character):
 
         self.initialPositionData = None
 
-        self.event = Event(self)
-        self.move = Move(self)
-        self.animation = Animation(self)
+        self.event = Event.Event(self)
+        self.move = Move.Move(self)
+        self.animation = Animation.Animation(self)
 
     def collide(self, xCorrection=0):
         horizontalVelocity = int(self.move.horizontalVelocity)

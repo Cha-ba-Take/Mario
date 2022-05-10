@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-class Animation:
+class characterAnimation:
     def __init__(self, character):
         self.character = character
 

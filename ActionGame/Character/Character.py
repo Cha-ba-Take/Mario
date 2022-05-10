@@ -2,9 +2,9 @@
 
 import json
 
-from .Animation import Animation
+import characterAnimation
 from ActionGame.Image import *
-from .characterMove import characterMove
+import characterMove
 
 
 class Character(pygame.sprite.Sprite):
@@ -27,8 +27,8 @@ class Character(pygame.sprite.Sprite):
 
         self.isCollide = 0
 
-        self.move = characterMove(self)
-        self.animation = Animation(self)
+        self.move = characterMove.characterMove(self)
+        self.animation = characterAnimation.characterAnimation(self)
 
     def loadJson(self, path):
         file = open(path, "r")

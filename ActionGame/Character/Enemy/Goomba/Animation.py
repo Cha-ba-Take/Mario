@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from Character.Animation import Animation as characterAnimation
+from ActionGame.Character.characterAnimation import characterAnimation
 
 class Animation(characterAnimation):
     def __init__(self, goomba):

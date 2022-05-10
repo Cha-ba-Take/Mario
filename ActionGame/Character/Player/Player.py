@@ -1,13 +1,13 @@
 # -*- coding: UTF-8 -*-
 
-from .Event import Event
-from .Move import Move
-from .Animation import Animation
+import Event
+import Move
+import Animation
 
 import sys
 sys.path.append('../Character')
 
-from ..Character import Character
+from ActionGame.Character import Character
 
 from pygame.locals import *
 
@@ -24,9 +24,9 @@ class Player(Character):
             "jumping" : False
         }
 
-        self.event = Event(self)
-        self.move = Move(self)
-        self.animation = Animation(self)
+        self.event = Event.Event(self)
+        self.move = Move.Move(self)
+        self.animation = Animation.Animation(self)
 
     def update(self):
         self.collide(12)

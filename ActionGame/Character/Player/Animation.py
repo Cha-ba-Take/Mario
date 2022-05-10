@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from ..Animation import Animation as characterAnimation
+from ActionGame.Character import characterAnimation
 
 class Animation(characterAnimation):
     def __init__(self, player):
