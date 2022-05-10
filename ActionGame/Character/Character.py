@@ -2,12 +2,9 @@
 
 import json
 
-import pygame
-from pygame.locals import *
-
-import Image
-from .Move import Move
 from .Animation import Animation
+from ActionGame.Image import *
+from .characterMove import characterMove
 
 
 class Character(pygame.sprite.Sprite):
@@ -30,7 +27,7 @@ class Character(pygame.sprite.Sprite):
 
         self.isCollide = 0
 
-        self.move = Move(self)
+        self.move = characterMove(self)
         self.animation = Animation(self)
 
     def loadJson(self, path):
@@ -39,10 +36,10 @@ class Character(pygame.sprite.Sprite):
         return json.load(file)
 
     def getImage(self):
-        baseImage = Image.loadImage(self.imageData["path"])
-        imageList = Image.splitImage(baseImage, self.imageData["length"])
+        baseImage = loadImage(self.imageData["path"])
+        imageList = splitImage(baseImage, self.imageData["length"])
 
-        return Image.flipImage(imageList)
+        return flipImage(imageList)
 
     def getAtColor(self, position, color):
         flag = 0

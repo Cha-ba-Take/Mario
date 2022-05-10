@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-class Move:
+class characterMove:
     def __init__(self, character):
         self.character = character
 

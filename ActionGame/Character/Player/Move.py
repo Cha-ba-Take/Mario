@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from Character.Move import Move as characterMove
+from ..characterMove import characterMove
 
 
 class Move(characterMove):
